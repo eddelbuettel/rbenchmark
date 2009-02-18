@@ -21,7 +21,7 @@ benchmark = function(
                   lapply(replications,
                      function(replication)
                         c(replications=replication, 
-                           system.time(replicate(replication, eval(argument, environment))))))))
+                           system.time(replicate(replication, { eval(argument, environment); NULL })))))))
    rownames(result) = 
       rep(ifelse(parameters=='', as.character(arguments), parameters), each=length(replications))
    result[, columns, drop=FALSE] }

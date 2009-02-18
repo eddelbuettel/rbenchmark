@@ -1,5 +1,9 @@
 #!/usr/bin/r
 
+peval = function(arg) {
+   cat('*** ', deparse(substitute(arg)), ' ***', fill=TRUE)
+   print(arg) }
+
 benchmark = function(
       ..., 
       columns=c('replications', 'user.self', 'sys.self', 'elapsed', 'user.child', 'sys.child'),

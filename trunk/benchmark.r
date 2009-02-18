@@ -1,11 +1,7 @@
 #!/usr/bin/r
 
-peval = function(arg) {
-   cat('*** ', deparse(substitute(arg)), ' ***', fill=TRUE)
-   print(arg) }
-
 benchmark = function(
-      ..., 
+      ...,
       columns=c('test', 'replications', 'user.self', 'sys.self', 'elapsed', 'user.child', 'sys.child'),
       replicate=100,
       environment=parent.frame()) {
@@ -14,14 +10,14 @@ benchmark = function(
    if (is.null(parameters))
       parameters = as.character(arguments)
    else {
-      positions = ! parameters %in% c('columns', 'replicate', 'environment')
-      arguments = arguments[positions]
-      parameters = parameters[positions] }
+      indices = ! parameters %in% c('columns', 'replicate', 'environment')
+      arguments = arguments[indices]
+      parameters = parameters[indices] }
    result = cbind(
       test=rep(ifelse(parameters=='', as.character(arguments), parameters), each=length(replicate)),
       as.data.frame(
-         do.call(rbind, 
-            lapply(arguments, 
+         do.call(rbind,
+            lapply(arguments,
                function(argument)
                   do.call(rbind,
                      lapply(replicate,

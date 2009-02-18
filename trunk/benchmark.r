@@ -1,10 +1,5 @@
 #!/usr/bin/r
 
-peval = function(argument) {
-   expression = deparse(substitute(argument))
-   cat('*** ', expression, ' ***', fill=TRUE)
-   print(argument) }
-
 benchmark = function(
       ..., 
       columns=c('replications', 'user.self', 'sys.self', 'elapsed', 'user.child', 'sys.child'),

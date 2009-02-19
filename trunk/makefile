@@ -1,3 +1,5 @@
 SRC = r
 
-include ~/workspace/include/makefilepart
+.PHONY: clean
+clean:
+	$(RM) $(addprefix ', $(addsuffix ', $(filter-out makefile $(addprefix %., $(SRC)), $(wildcard *))))

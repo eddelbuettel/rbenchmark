@@ -27,5 +27,5 @@ benchmark = function(
          function(test, replications) 
             system.time(replicate(replications, { eval(test, environment); NULL })),
          tests,
-         replications)))[, columns, drop=FALSE]
-   return(result[order(result[order]), , drop=FALSE]) }
+         replications)))
+   result[do.call(base::order, result[order]), columns, drop=FALSE] }

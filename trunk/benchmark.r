@@ -20,7 +20,6 @@ benchmark = function(
    labels = rep(ifelse(parameters=='', as.character(arguments), parameters), each=n$replications)
    tests = rep(arguments, each=n$replications)
    list(...)
-#   lapply(tests, eval, environment)
    result = data.frame(
       row.names=NULL,
       test=labels,

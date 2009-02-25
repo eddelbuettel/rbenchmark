@@ -18,12 +18,10 @@ benchmark = function(
    n = list(tests=length(arguments), replications=length(replications))
    replications = rep(replications, n$tests)
    labels = rep(ifelse(parameters=='', as.character(arguments), parameters), each=n$replications)
-   arguments = mapply(
-      function(x, y) 
-         if (is.expression(x)) x
-         else y,
-      list(...),
-      arguments)
+   values = list(...)
+   for (i in 1:n$tests)
+      if (is.expression(values[[i]])) 
+         arguments[i] = values[i]
    tests = rep(arguments, each=n$replications)
    result = data.frame(
       row.names=NULL,

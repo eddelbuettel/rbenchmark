@@ -40,7 +40,6 @@ The parameters \code{replications}, \code{environment}, \code{columns}, and \cod
 
 \code{test}: a character string naming each individual benchmark. If the corresponding expression was passed to benchmark in a named argument, the name will be used; otherwise, the expression itself converted to a character string will be used.
 
-\code{replications}: a numeric vector specifying the number of replications used within each individual benchmark.
 
 \code{user.self}, \code{sys.self}, \code{elapsed}, \code{user.child}, and \code{sys.child} are columns containing values reported by system.time; see Sec. 7.1 Operating system access in The R language definition, or type ?system.time. 
 
@@ -59,12 +58,13 @@ If either \code{...} or \code{replications} contain duplicates, the returned dat
 \note{
 Not all expressions, if passed as unnamed arguments, will be cast to character strings as you might expect:
 
-benchmark({x = 5; 1:x^x})
-# the benchmark will be named \code{\{}
+benchmark(\{x = 5; 1:x\^x\})
+\# the benchmark will be named \code{\{}
 
 benchmark performs no smart argument-parameter matching. Any named argument whose name is not exactly 'replications', 'environment', 'columns', or 'order' will be treated as an expression to be benchmarked: 
 
-benchmark(1:10^5, repl=1000) # there will be a benchmark named \code{repl}
+benchmark(1:10\^5, repl=1000) 
+\# there will be a benchmark named \code{repl}
 
 See http://code.google.com/p/rbenchmark/ for more details.
 

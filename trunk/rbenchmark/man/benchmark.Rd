@@ -26,27 +26,32 @@ benchmark(
 \details{
 The parameters \code{replications}, \code{environment}, \code{columns}, and \code{order} are optional and have the following default values:
 
-\item \code{replications = 100}
+\itemize{
+\item replications = 100
 
     By default, each expression will be benchmarked once, and will be evaluated 100 times within the benchmark. 
 
-\item \code{environment = parent.frame()}
+\item environment = parent.frame()
 
     By default, all expressions will be evaluated in the environment in which the call to benchmark is made. 
 
-\item \code{columns = c('test', 'replications', 'user.self', 'sys.self', 'elapsed', 'user.child', 'sys.child')}
+\item columns = c('test', 'replications', 'user.self', 'sys.self', 'elapsed', 'user.child', 'sys.child')
 
     By default, the returned data frame will contain all columns generated internally in benchmark. These named columns will contain the following data:
 
-\code{test}: a character string naming each individual benchmark. If the corresponding expression was passed to benchmark in a named argument, the name will be used; otherwise, the expression itself converted to a character string will be used.
+\itemize{
+\item \code{test}: a character string naming each individual benchmark. If the corresponding expression was passed to benchmark in a named argument, the name will be used; otherwise, the expression itself converted to a character string will be used.
 
+\item \code{replications}: a numeric vector specifying the number of replications used within each individual benchmark. 
 
-\code{user.self}, \code{sys.self}, \code{elapsed}, \code{user.child}, and \code{sys.child} are columns containing values reported by system.time; see Sec. 7.1 Operating system access in The R language definition, or type ?system.time. 
+\item \code{user.self}, \code{sys.self}, \code{elapsed}, \code{user.child}, and \code{sys.child} are columns containing values reported by system.time; see Sec. 7.1 Operating system access in The R language definition, or see \link{system.time}.
+}
 
-\item \code{order = 'test'}
+\item order = 'test'
 
     By default, the data frame is sorted by the column test (the labels of the expressions or the expressions themselves; see above). 
- }
+}
+}
  
 \value{
 The value returned from a call to \code{benchmark} is a data frame with rows corresponding to individual benchmarks, and columns as specified above.
@@ -54,7 +59,7 @@ The value returned from a call to \code{benchmark} is a data frame with rows cor
 An individual benchmark corresponds to a unique combination (see below) of an expression from \code{... and} a replication count from \code{replications}; if there are n expressions in \code{...} and m replication counts in \code{replication}, the returned data frame will consist of n*m rows, each corresponding to an individual, independent (see below) benchmark.
 
 If either \code{...} or \code{replications} contain duplicates, the returned data frame will contain multiple benchmarks for the involved expression-replication combinations. Note that such multiple benchmarks for a particular expression-replication pair will, in general, have different timing results, since they will be evaluated independently (unless the expressions perform side effects that can influence each other's performance). }
-\author{Wacek Kusnierczyk}
+\author{Wacek Kusnierczyk <mailto:waku@idi.ntnu.no>}
 \note{
 Not all expressions, if passed as unnamed arguments, will be cast to character strings as you might expect:
 
@@ -70,7 +75,7 @@ benchmark performs no smart argument-parameter matching. Any named argument whos
    # there will be a benchmark named 'repl'
 }
 
-See http://code.google.com/p/rbenchmark/ for more details.
+See <http://code.google.com/p/rbenchmark> for more details.
 
 }
 \examples{
@@ -82,8 +87,10 @@ benchmark(1:10^6)
 # Example 2
 # A call to benchmark with two named expressions and three replication 
 # counts, output sorted by the replication counts and then by the elapsed time:
-means.rep = function(n, m) mean(replicate(n, rnorm(m)))
-means.pat = function(n, m) colMeans(array(rnorm(n*m), c(m, n)))
+means.rep = function(n, m) 
+   mean(replicate(n, rnorm(m)))
+means.pat = function(n, m) 
+   colMeans(array(rnorm(n*m), c(m, n)))
 benchmark(
    rep=means.rep(100, 100), 
    pat=means.pat(100, 100), 
@@ -93,7 +100,8 @@ benchmark(
 # Example 3
 # A call to benchmark with duplicate expressions and replication counts, 
 # output with selected columns, additional column computed afterwards:
-means.pat = function(n, m) colMeans(array(rnorm(n*m), c(m, n)))
+means.pat = function(n, m) 
+   colMeans(array(rnorm(n*m), c(m, n)))
 within(
    benchmark(
       replications=rep(100, 3), 
@@ -104,8 +112,10 @@ within(
 
 # Example 4
 # A call to benchmark with a list of arbitrary predefined expressions:
-means.rep = function(n, m) mean(replicate(n, rnorm(m)))
-means.pat = function(n, m) colMeans(array(rnorm(n*m), c(m, n)))
+means.rep = function(n, m) 
+   mean(replicate(n, rnorm(m)))
+means.pat = function(n, m) 
+   colMeans(array(rnorm(n*m), c(m, n)))
 tests = list(
    rep=expression(means.rep(100, 100)),
    pat=expression(means.pat(100, 100)))

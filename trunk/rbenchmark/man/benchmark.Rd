@@ -58,13 +58,17 @@ If either \code{...} or \code{replications} contain duplicates, the returned dat
 \note{
 Not all expressions, if passed as unnamed arguments, will be cast to character strings as you might expect:
 
-benchmark(\{x = 5; 1:x\^x\})
-\# the benchmark will be named \code{\{}
+\preformatted{
+   benchmark({x = 5; 1:x^x})
+   # the benchmark will be named '\{'
+}
 
 benchmark performs no smart argument-parameter matching. Any named argument whose name is not exactly 'replications', 'environment', 'columns', or 'order' will be treated as an expression to be benchmarked: 
 
-benchmark(1:10\^5, repl=1000) 
-\# there will be a benchmark named \code{repl}
+\preformatted{
+   benchmark(1:10^5, repl=1000) 
+   # there will be a benchmark named 'repl'
+}
 
 See http://code.google.com/p/rbenchmark/ for more details.
 
@@ -76,8 +80,8 @@ See http://code.google.com/p/rbenchmark/ for more details.
 benchmark(1:10^6)
 
 # Example 2
-# A call to benchmark with two named expressions and three replication counts, 
-# output sorted by the replication counts and then by the elapsed time:
+# A call to benchmark with two named expressions and three replication 
+# counts, output sorted by the replication counts and then by the elapsed time:
 means.rep = function(n, m) mean(replicate(n, rnorm(m)))
 means.pat = function(n, m) colMeans(array(rnorm(n*m), c(m, n)))
 benchmark(

@@ -21,8 +21,6 @@ function(
       if (is.expression(values[[i]])) 
          arguments[i] = values[i]
    tests = rep(arguments, each=n$replications)
-   if (is.null(order))
-      order = 1:length(tests)
    result = data.frame(
       row.names=NULL,
       test=labels,
@@ -32,5 +30,8 @@ function(
             system.time(replicate(replications, { eval(test, environment); NULL })),
          tests,
          replications)))
-   result[do.call(base::order, result[order]), columns, drop=FALSE] }
+   if (is.null(order))
+      result[,columns,drop=FALSE]
+   else
+      result[do.call(base::order, result[order]), columns, drop=FALSE] }
 

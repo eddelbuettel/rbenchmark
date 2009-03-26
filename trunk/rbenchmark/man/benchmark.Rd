@@ -19,7 +19,7 @@ benchmark(
 \arguments{
   \item{\dots}{captures any number of unevaluated expressions passed to benchmark as named or unnamed arguments. }
   \item{columns}{a character or integer vector specifying which columns should be included in the returned data frame (see below).}
-  \item{order}{a character or integer vector specifying which columns should be used to sort the output data frame. Any of the columns that can be specified for \code{columns} (see above) can be used, even if it is not included in \code{columns} and will not appear in the output data frame.}
+  \item{order}{a character or integer vector specifying which columns should be used to sort the output data frame. Any of the columns that can be specified for \code{columns} (see above) can be used, even if it is not included in \code{columns} and will not appear in the output data frame.  If \code{order=NULL}, the benchmarks will appear sorted by the order of the expressions in the call to \code{benchmark}.}
   \item{replications}{a numeric vector specifying how many times an expression should be evaluated when the runtime is measured. If \code{replications} consists of more than one value, each expression will be benchmarked multiple times, once for each value in replications. }
   \item{environment}{the environment in which the expressions will be evaluated.}
 }

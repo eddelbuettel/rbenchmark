@@ -1,7 +1,5 @@
-#!/usr/bin/r
-
-# a simple routine for benchmarking an arbitrary number of expressions
-benchmark = function(
+`benchmark` <-
+function(
       ..., 
       columns=c('test', 'replications', 'user.self', 'sys.self', 'elapsed', 'user.child', 'sys.child'),
       order='test',
@@ -32,4 +30,8 @@ benchmark = function(
             system.time(replicate(replications, { eval(test, environment); NULL })),
          tests,
          replications)))
-   result[do.call(base::order, result[order]), columns, drop=FALSE] }
+   if (is.null(order))
+      result[,columns,drop=FALSE]
+   else
+      result[do.call(base::order, result[order]), columns, drop=FALSE] }
+

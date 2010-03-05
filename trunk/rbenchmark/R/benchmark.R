@@ -13,25 +13,29 @@ function(
       keep = ! parameters %in% c('columns', 'order', 'replications', 'environment')
       arguments = arguments[keep]
       parameters = parameters[keep] }
-   n = list(tests=length(arguments), replications=length(replications))
-   replications = rep(replications, n$tests)
-   labels = rep(ifelse(parameters=='', as.character(arguments), parameters), each=n$replications)
+   n = list(
+      tests=length(arguments), 
+      replications=length(replications))
+   labels = rep(
+      ifelse(parameters=='', as.character(arguments), parameters), 
+      each=n$replications)
    values = list(...)
    for (i in 1:n$tests)
       if (is.expression(values[[i]])) 
          arguments[i] = values[i]
+   replications = rep(replications, n$tests)
    tests = rep(arguments, each=n$replications)
    result = data.frame(
       row.names=NULL,
       test=labels,
       replications=as.integer(replications),
       t(mapply(
-         function(test, replications) 
-            system.time(replicate(replications, { eval(test, environment); NULL })),
+         function(test, replications) {
+            system.time(replicate(replications, { eval(test, environment); NULL })) },
          tests,
          replications)))
    if ('relative' %in% columns)
-      result$relative = with(result, elapsed/min(elapsed))
+      result$relative = with(result, elapsed/min(elapsed[elapsed > 0]))
    if (is.null(order))
       result[,columns,drop=FALSE]
    else

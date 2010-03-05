@@ -1,7 +1,7 @@
 `benchmark` <-
 function(
       ..., 
-      columns=c('test', 'replications', 'user.self', 'sys.self', 'elapsed', 'user.child', 'sys.child'),
+      columns=c('test', 'replications', 'elapsed', 'relative', 'user.self', 'sys.self', 'user.child', 'sys.child'),
       order='test',
       replications=100,
       environment=parent.frame()) {
@@ -30,6 +30,8 @@ function(
             system.time(replicate(replications, { eval(test, environment); NULL })),
          tests,
          replications)))
+   if ('relative' %in% columns)
+      result$relative = with(result, elapsed/min(elapsed))
    if (is.null(order))
       result[,columns,drop=FALSE]
    else

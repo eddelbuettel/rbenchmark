@@ -10,7 +10,7 @@ Given a specification of the benchmarking process (counts of replications, evalu
 benchmark(
    ..., 
    columns = c(
-      "test", "replications", "user.self", "sys.self", "elapsed", 
+      "test", "replications", "elapsed", "relative", "user.self", "sys.self", 
       "user.child", "sys.child"), 
    order = "test", 
    replications = 100, 
@@ -35,7 +35,7 @@ The parameters \code{replications}, \code{environment}, \code{columns}, and \cod
 
     By default, all expressions will be evaluated in the environment in which the call to benchmark is made. 
 
-\item columns = c('test', 'replications', 'user.self', 'sys.self', 'elapsed', 'user.child', 'sys.child')
+\item columns = c('test', 'replications', 'elapsed', 'relative', 'user.self', 'sys.self', 'user.child', 'sys.child')
 
     By default, the returned data frame will contain all columns generated internally in benchmark. These named columns will contain the following data:
 
@@ -44,7 +44,9 @@ The parameters \code{replications}, \code{environment}, \code{columns}, and \cod
 
 \item \code{replications}: a numeric vector specifying the number of replications used within each individual benchmark. 
 
-\item \code{user.self}, \code{sys.self}, \code{elapsed}, \code{user.child}, and \code{sys.child} are columns containing values reported by system.time; see Sec. 7.1 Operating system access in The R language definition, or see \link{system.time}.
+\item \code{elapsed}, \code{user.self}, \code{sys.self}, \code{user.child}, and \code{sys.child} are columns containing values reported by system.time; see Sec. 7.1 Operating system access in The R language definition, or see \link{system.time}.
+
+\item \code{relative}: a column containing benchmark values relative to the shortest benchmark value.
 }
 
 \item order = 'test'

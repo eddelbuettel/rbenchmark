@@ -116,8 +116,8 @@ within(
    {average=elapsed/replications})
 
 # Example 4
-# A call to benchmark with a list of arbitrary predefined expressions:
-# Relative timings are based on the user.self timings
+# A call to benchmark with a list of arbitrary predefined expressions.
+# Relative timings are based on the user.self timings:
 means.rep = function(n, m) 
 	mean(replicate(n, rnorm(m)))
 means.pat = function(n, m) 

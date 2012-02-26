@@ -13,8 +13,8 @@ Given a specification of the benchmarking process (counts of replications, evalu
 \tabular{ll}{
 Package: \tab benchmark\cr
 Type: \tab Package\cr
-Version: \tab 0.3\cr
-Date: \tab 2010-03-05\cr
+Version: \tab 0.4\cr
+Date: \tab 2012-02-25\cr
 License: GPL-2
 LazyLoad: \tab yes\cr
 }

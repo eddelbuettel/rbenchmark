@@ -33,11 +33,16 @@ print(result)
 
 # example 4
 # application of benchmark to a list of arbitrary expressions
+# calculate relative timings based on the user.self timings
 means.rep = function(n, m) mean(replicate(n, rnorm(m)))
 means.pat = function(n, m) colMeans(array(rnorm(n*m), c(m, n)))
 tests = list(
    rep=expression(means.rep(100, 100)),
    pat=expression(means.pat(100, 100)))
 result = do.call(benchmark, 
-   c(tests, list(replications=100, columns=c('test', 'elapsed', 'replications'), order='elapsed')))
+   c(tests, list(
+      replications=100, 
+      columns=c('test', 'user.self', 'replications', 'relative'), 
+      order='elapsed',
+      relative='user.self')))
 print(result)

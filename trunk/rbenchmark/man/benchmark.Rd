@@ -14,13 +14,15 @@ benchmark(
       "user.child", "sys.child"), 
    order = "test", 
    replications = 100, 
-   environment = parent.frame())
+   environment = parent.frame(),
+   relative = "elapsed")
 }
 \arguments{
   \item{\dots}{captures any number of unevaluated expressions passed to benchmark as named or unnamed arguments. }
   \item{columns}{a character or integer vector specifying which columns should be included in the returned data frame (see below).}
   \item{order}{a character or integer vector specifying which columns should be used to sort the output data frame. Any of the columns that can be specified for \code{columns} (see above) can be used, even if it is not included in \code{columns} and will not appear in the output data frame.  If \code{order=NULL}, the benchmarks will appear sorted by the order of the expressions in the call to \code{benchmark}.}
   \item{replications}{a numeric vector specifying how many times an expression should be evaluated when the runtime is measured. If \code{replications} consists of more than one value, each expression will be benchmarked multiple times, once for each value in replications. }
+  \item{relative}{the name or index of the column whose values will be used to compute relative timings (see below). If \code{relative} is not given, it defaults to \code{'elapsed'}.}
   \item{environment}{the environment in which the expressions will be evaluated.}
 }
 \details{
@@ -46,7 +48,7 @@ The parameters \code{replications}, \code{environment}, \code{columns}, and \cod
 
 \item \code{elapsed}, \code{user.self}, \code{sys.self}, \code{user.child}, and \code{sys.child} are columns containing values reported by system.time; see Sec. 7.1 Operating system access in The R language definition, or see \link{system.time}.
 
-\item \code{relative}: a column containing benchmark values relative to the shortest benchmark value.
+\item \code{relative}: a column containing benchmark values relative to the shortest benchmark value.  The benchmark values used in this computation are taken from the column specified with the \code{relative} argument, or \code{'elapsed'} by default if not given. 
 }
 
 \item order = 'test'
@@ -80,6 +82,7 @@ benchmark performs no smart argument-parameter matching. Any named argument whos
 See <http://code.google.com/p/rbenchmark> for more details.
 
 }
+
 \examples{
 # example 1
 # benchmark the allocation of one 10^6-element numeric vector, 
@@ -114,16 +117,19 @@ within(
 
 # Example 4
 # A call to benchmark with a list of arbitrary predefined expressions:
+# Relative timings are based on the user.self timings
 means.rep = function(n, m) 
-   mean(replicate(n, rnorm(m)))
+	mean(replicate(n, rnorm(m)))
 means.pat = function(n, m) 
-   colMeans(array(rnorm(n*m), c(m, n)))
+	colMeans(array(rnorm(n*m), c(m, n)))
 tests = list(
    rep=expression(means.rep(100, 100)),
    pat=expression(means.pat(100, 100)))
-do.call(benchmark, 
-   c(tests, 
-     list(replications=100, 
-          columns=c('test', 'elapsed', 'replications'), 
-          order='elapsed')))
+result = do.call(benchmark, 
+   c(tests, list(
+      replications=100, 
+      columns=c('test', 'user.self', 'replications', 'relative'), 
+      order='elapsed',
+      relative='user.self')))
+      
 }

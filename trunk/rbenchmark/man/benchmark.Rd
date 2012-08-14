@@ -84,8 +84,9 @@ See <http://code.google.com/p/rbenchmark> for more details.
 }
 
 \examples{
-# example 1
-# benchmark the allocation of one 10^6-element numeric vector, 
+\dontrun{
+# Example 1
+# Benchmark the allocation of one 10^6-element numeric vector, 
 # replicated 100 times
 benchmark(1:10^6)
 
@@ -125,11 +126,11 @@ means.pat = function(n, m)
 tests = list(
    rep=expression(means.rep(100, 100)),
    pat=expression(means.pat(100, 100)))
-result = do.call(benchmark, 
+do.call(benchmark, 
    c(tests, list(
       replications=100, 
       columns=c('test', 'user.self', 'replications', 'relative'), 
       order='elapsed',
       relative='user.self')))
-      
+}      
 }

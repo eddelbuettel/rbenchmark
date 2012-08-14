@@ -34,8 +34,8 @@ function(
    if ('relative' %in% columns)
       result['relative'] = local({
          timing = result[relative]
-         if (min(timing) != 0) timing/min(timing)
-	     else 0 })
+         if (min(timing) != 0) round(timing/min(timing), 3)
+	     else NA })
    if (is.null(order))
       result[,columns,drop=FALSE]
    else

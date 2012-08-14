@@ -1,0 +1,23 @@
+2012-08-14  WacekKusnierczyk <waku@idi.ntnu.no>
+
+	* DESCRIPTION (Package): Version set to 0.4.1
+
+	* R/benchmark.R: added functionality for the user to choose which column should be used for relative timings
+	* man/benchmark.Rd: modified example 4 to show the above change
+
+2012-08-12  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Package): Version set to 0.3.1
+
+	* DESCRIPTION (Maintainer): New Maintainer -- tried twice to contact
+	Wacek at two different email addresses; this version started from the
+	CRAN tarball 0.3.0 though there is a newer version 0.4.0 dated 25 Feb
+	2012 at https://code.google.com/p/rbenchmark/downloads/list
+
+	* man/benchmark.Rd: Wrap \dontrun{} around example code
+	* man/benchmark-package.Rd: Idem; this avoid R CMD check error
+
+	* demo/benchmark.R: Added new demo() based on example code
+
+	* ChangeLog: Added
+

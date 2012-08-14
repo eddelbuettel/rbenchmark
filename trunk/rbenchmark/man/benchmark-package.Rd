@@ -13,8 +13,8 @@ Given a specification of the benchmarking process (counts of replications, evalu
 \tabular{ll}{
 Package: \tab benchmark\cr
 Type: \tab Package\cr
-Version: \tab 0.4\cr
-Date: \tab 2012-02-25\cr
+Version: \tab 0.4.1\cr
+Date: \tab 2012-08-14\cr
 License: GPL-2
 LazyLoad: \tab yes\cr
 }
@@ -29,8 +29,8 @@ Maintainer: Wacek Kusnierczyk <waku@idi.ntnu.no>
 }
 \keyword{ package }
 \examples{
-
+\dontrun{
 library(rbenchmark)
 benchmark(1:10^8, replications=5)
-
+}
 }

@@ -1,10 +1,11 @@
-#!/usr/bin/r
+#!/usr/bin/env Rscript
 
 # loading benchmark directly from googlecode
 source('http://rbenchmark.googlecode.com/svn/trunk/benchmark.r')
 
 # example 1
-# benchmark the allocation of one 10^6-element numeric vector, replicated 100 times
+# benchmark the allocation of one 10^6-element numeric vector,
+# replicated 100 times
 result = benchmark(1:10^6)
 print(result)
 

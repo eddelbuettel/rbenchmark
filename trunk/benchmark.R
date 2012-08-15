@@ -31,15 +31,12 @@ function(
    # copying each argument entry to tests  n$replications consecutive times
    # this extends tests
    # initialize tests with arguments with everything R needs
-   tests <- arguments
-   if( n$replications > 1 ) {
-       z <- 1
-       for(k in 1:length(arguments)) {
-           tests[z:(z+n$replications-1)] <- arguments[k]
-           z <- z+n$replications
-       }
-   }
-
+   tests = arguments
+   if (n$replications > 1) {
+       z = 1
+       for (k in 1:length(arguments)) {
+           tests[z:(z+n$replications-1)] = arguments[k]
+           z = z+n$replications } }
    result = data.frame(
       row.names=NULL,
       test=labels,

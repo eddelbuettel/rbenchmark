@@ -1,3 +1,13 @@
+2012-08-15 Berend Hasselman <bhh at xs4all.nl>
+
+	* DESCRIPTION (Package): Version set to 0.4.2
+
+	* modified R/benchmark.R to accommodate for R's rep() function
+	no longer accepting non numeric vectors (this can happen when you benchmark function calls)
+	in R-devel and R-2.15.1 patched.
+
+	* removed the \dontrun{} around examplecode since it now works in R-devel and R-2.15.1 patched.
+        
 2012-08-14  WacekKusnierczyk <waku@idi.ntnu.no>
 
 	* DESCRIPTION (Package): Version set to 0.4.1

@@ -6,10 +6,9 @@ function(
       replications=100,
       environment=parent.frame(),
       relative='elapsed') {
-   if(length(list(...)) == 0 ) {
-       warning("Nothing to benchmark!")        
-       return(invisible())
-   }
+   if (length(list(...)) == 0 ) {
+       warning("benchmark called with no expressions to be evaluated.")        
+       return(invisible(data.frame())) }
    arguments = match.call()[-1]
    parameters = names(arguments)
    if (is.null(parameters))

@@ -1,3 +1,11 @@
+
+2012-08-17 Berend Hasselman <bhh at xs4all.nl>
+
+	* DESCRIPTION (Package): Version set to 0.4.3
+
+	* Added check on no expressions to benchmark to avoid obscure R error message.
+	benchmark will give a warning and return an invisible empty object.
+
 2012-08-15 Berend Hasselman <bhh at xs4all.nl>
 
 	* DESCRIPTION (Package): Version set to 0.4.2

@@ -6,6 +6,10 @@ function(
       replications=100,
       environment=parent.frame(),
       relative='elapsed') {
+   if(length(list(...)) == 0 ) {
+       warning("Nothing to benchmark!")        
+       return(invisible())
+   }
    arguments = match.call()[-1]
    parameters = names(arguments)
    if (is.null(parameters))

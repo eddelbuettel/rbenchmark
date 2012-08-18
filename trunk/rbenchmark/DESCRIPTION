@@ -5,7 +5,8 @@ Version: 0.4.3
 Date: 2012-08-17
 Authors@R: c(
 	person("Wacek", "Kusnierczyk", role=c("aut", "cre"), email="waku@idi.ntnu.no"),
-	person("Dirk", "Eddelbuettel", role="cre", email="edd@debian.org"))
+	person("Dirk", "Eddelbuettel", role="ctb", email="edd@debian.org"),
+	person("Berend", "Hasselman", role="ctb", email="bhh@xs4all.nl"))
 Author: Wacek Kusnierczyk <waku@idi.ntnu.no>
 Maintainer: Dirk Eddelbuettel <edd@debian.org>
 Description: rbenchmark is inspired by the Perl module Benchmark, and

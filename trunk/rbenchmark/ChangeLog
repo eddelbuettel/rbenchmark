@@ -1,26 +1,28 @@
-
 2012-08-17 Berend Hasselman <bhh at xs4all.nl>
 
 	* DESCRIPTION (Package): Version set to 0.4.3
 
-	* Added check on no expressions to benchmark to avoid obscure R error message.
-	benchmark will give a warning and return an invisible empty object.
+	* Added check on no expressions to benchmark to avoid obscure R error
+	message.  benchmark will give a warning and return an invisible empty
+	object.
 
 2012-08-15 Berend Hasselman <bhh at xs4all.nl>
 
 	* DESCRIPTION (Package): Version set to 0.4.2
 
-	* modified R/benchmark.R to accommodate for R's rep() function
-	no longer accepting non numeric vectors (this can happen when you benchmark function calls)
-	in R-devel and R-2.15.1 patched.
+	* modified R/benchmark.R to accommodate for R's rep() function no
+	longer accepting non numeric vectors (this can happen when you
+	benchmark function calls) in R-devel and R-2.15.1 patched.
 
-	* removed the \dontrun{} around examplecode since it now works in R-devel and R-2.15.1 patched.
-        
-2012-08-14  WacekKusnierczyk <waku@idi.ntnu.no>
+	* removed the \dontrun{} around examplecode since it now works in
+	R-devel and R-2.15.1 patched.
+
+2012-08-14  Wacek Kusnierczyk <waku@idi.ntnu.no>
 
 	* DESCRIPTION (Package): Version set to 0.4.1
 
-	* R/benchmark.R: added functionality for the user to choose which column should be used for relative timings
+	* R/benchmark.R: added functionality for the user to choose which
+	column should be used for relative timings
 	* man/benchmark.Rd: modified example 4 to show the above change
 
 2012-08-12  Dirk Eddelbuettel  <edd@debian.org>

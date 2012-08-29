@@ -1,14 +1,14 @@
 Package: rbenchmark
 Type: Package
 Title: Benchmarking routine for R
-Version: 0.4.3
-Date: 2012-08-17
+Version: 1.0.0
+Date: 2012-08-29
 Authors@R: c(
 	person("Wacek", "Kusnierczyk", role=c("aut", "cre"), email="waku@idi.ntnu.no"),
 	person("Dirk", "Eddelbuettel", role="ctb", email="edd@debian.org"),
 	person("Berend", "Hasselman", role="ctb", email="bhh@xs4all.nl"))
 Author: Wacek Kusnierczyk <waku@idi.ntnu.no>
-Maintainer: Dirk Eddelbuettel <edd@debian.org>
+Maintainer: Wacek Kusnierczyk <waku@idi.ntnu.no>
 Description: rbenchmark is inspired by the Perl module Benchmark, and
         is intended to facilitate benchmarking of arbitrary R code. The
         library consists of just one function, benchmark, which is a

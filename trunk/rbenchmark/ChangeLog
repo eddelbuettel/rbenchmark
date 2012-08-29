@@ -1,3 +1,11 @@
+2012-08-29 Wacek Kusnierczyk<waku@idi.ntnu.no>
+
+	* DESCRIPTION (Package): Version set to 1.0
+
+	* Modified the way replicated replications and labels are generated, so
+	that replication of arguments is no longer needed, effectively solving the
+	issue with rep not accepting non-numeric vectors.
+
 2012-08-17 Berend Hasselman <bhh at xs4all.nl>
 
 	* DESCRIPTION (Package): Version set to 0.4.3

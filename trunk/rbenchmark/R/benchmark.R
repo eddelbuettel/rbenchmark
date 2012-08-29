@@ -18,28 +18,12 @@ function(
       arguments = arguments[keep]
       parameters = parameters[keep] }
    n = list(tests=length(arguments), replications=length(replications))
-   replications = rep(replications, n$tests)
-   labels = rep(ifelse(parameters=='', as.character(arguments), parameters), each=n$replications)
+   replications = rep(replications, each=n$tests)
+   labels = rep(ifelse(parameters=='', as.character(arguments), parameters), n$replications)
    values = list(...)
    for (i in 1:n$tests)
       if (is.expression(values[[i]])) 
          arguments[i] = values[i]
-
-   # this no longer works in R-2.15.1 patched and R-devel
-   # since rep can now only handle vector
-   # tests = rep(arguments, each=n$replications)
-
-   # so we have to copy arguments in an ugly way 
-   # if replications is > 1 extend tests by
-   # copying each argument entry to tests  n$replications consecutive times
-   # this extends tests
-   # initialize tests with arguments with everything R needs
-   tests = arguments
-   if (n$replications > 1) {
-       z = 1
-       for (k in 1:length(arguments)) {
-           tests[z:(z+n$replications-1)] = arguments[k]
-           z = z+n$replications } }
    result = data.frame(
       row.names=NULL,
       test=labels,
@@ -47,7 +31,7 @@ function(
       t(mapply(
          function(test, replications) 
             system.time(replicate(replications, { eval(test, environment); NULL })),
-         tests,
+         arguments,
          replications)))
    if ('relative' %in% columns)
       result['relative'] = local({

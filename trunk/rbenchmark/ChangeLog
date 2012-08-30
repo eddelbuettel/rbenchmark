@@ -1,3 +1,10 @@
+2012-08-30 Wacek Kusnierczyk<waku@idi.ntnu.no>
+
+	* Polished code and documentation, updated repository site to be in sync
+	with the package documentation.
+	
+	* Updated examples for more clarity.
+
 2012-08-29 Wacek Kusnierczyk<waku@idi.ntnu.no>
 
 	* DESCRIPTION (Package): Version set to 1.0

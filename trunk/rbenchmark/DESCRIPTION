@@ -2,7 +2,7 @@ Package: rbenchmark
 Type: Package
 Title: Benchmarking routine for R
 Version: 1.0.0
-Date: 2012-08-29
+Date: 2012-08-30
 Authors@R: c(
 	person("Wacek", "Kusnierczyk", role=c("aut", "cre"), email="waku@idi.ntnu.no"),
 	person("Dirk", "Eddelbuettel", role="ctb", email="edd@debian.org"),

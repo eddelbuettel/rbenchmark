@@ -20,22 +20,15 @@ benchmark(
 \arguments{
   \item{\dots}{captures any number of unevaluated expressions passed to benchmark as named or unnamed arguments. }
   \item{columns}{a character or integer vector specifying which columns should be included in the returned data frame (see below).}
-  \item{order}{a character or integer vector specifying which columns should be used to sort the output data frame. Any of the columns that can be specified for \code{columns} (see above) can be used, even if it is not included in \code{columns} and will not appear in the output data frame.  If \code{order=NULL}, the benchmarks will appear sorted by the order of the expressions in the call to \code{benchmark}.}
+  \item{order}{a character or integer vector specifying which columns should be used to sort the output data frame. Any of the columns that can be specified for \code{columns} (see above) can be used, even if it is not included in \code{columns} and will not appear in the output data frame.  If \code{order=NULL}, the benchmarks will appear in the order of the replication counts and expressions provided in the call to \code{benchmark}, without sorting.}
   \item{replications}{a numeric vector specifying how many times an expression should be evaluated when the runtime is measured. If \code{replications} consists of more than one value, each expression will be benchmarked multiple times, once for each value in replications. }
-  \item{relative}{the name or index of the column whose values will be used to compute relative timings (see below). If \code{relative} is not given, it defaults to \code{'elapsed'}.}
   \item{environment}{the environment in which the expressions will be evaluated.}
+  \item{relative}{the name or index of the column whose values will be used to compute relative timings (see below). If \code{relative} is not given, it defaults to \code{'elapsed'}.}
 }
 \details{
-The parameters \code{replications}, \code{environment}, \code{columns}, and \code{order} are optional and have the following default values:
+The parameters \code{columns}, \code{order}, \code{replications}, and \code{environment} are optional and have the following default values:
 
 \itemize{
-\item replications = 100
-
-    By default, each expression will be benchmarked once, and will be evaluated 100 times within the benchmark. 
-
-\item environment = parent.frame()
-
-    By default, all expressions will be evaluated in the environment in which the call to benchmark is made. 
 
 \item columns = c('test', 'replications', 'elapsed', 'relative', 'user.self', 'sys.self', 'user.child', 'sys.child')
 
@@ -48,14 +41,28 @@ The parameters \code{replications}, \code{environment}, \code{columns}, and \cod
 
 \item \code{elapsed}, \code{user.self}, \code{sys.self}, \code{user.child}, and \code{sys.child} are columns containing values reported by system.time; see Sec. 7.1 Operating system access in The R language definition, or see \link{system.time}.
 
-\item \code{relative}: a column containing benchmark values relative to the shortest benchmark value.  The benchmark values used in this computation are taken from the column specified with the \code{relative} argument, or \code{'elapsed'} by default if not given. 
-}
+\item \code{relative}: a column containing benchmark values relative to the shortest benchmark value.  The benchmark values used in this computation are taken from the column specified with the \code{relative} argument.
+ 
+} % itemize (columns)
 
 \item order = 'test'
 
     By default, the data frame is sorted by the column test (the labels of the expressions or the expressions themselves; see above). 
-}
-}
+
+\item replications = 100
+
+    By default, each expression will be benchmarked once, and will be evaluated 100 times within the benchmark. 
+
+\item environment = parent.frame()
+
+    By default, all expressions will be evaluated in the environment in which the call to benchmark is made. 
+
+\item relative = 'elapsed'
+
+    By default, relative timings are given based on values from the column 'elapsed'.
+
+} % itemize (parameters)
+} % details
  
 \value{
 The value returned from a call to \code{benchmark} is a data frame with rows corresponding to individual benchmarks, and columns as specified above.
@@ -84,51 +91,46 @@ See <http://code.google.com/p/rbenchmark> for more details.
 }
 
 \examples{
+
+library(rbenchmark)
+
 # Example 1
-# Benchmark the allocation of one 10^6-element numeric vector, 
-# replicated 100 times
+# Benchmarking the allocation of one 10^6-element numeric vector,
+# by default replicated 100 times
 benchmark(1:10^6)
 
+# simple test functions used in subsequent examples
+random.array = function(rows, cols, dist=rnorm) 
+                  array(dist(rows*cols), c(rows, cols))
+random.replicate = function(rows, cols, dist=rnorm)
+                      replicate(cols, dist(rows))
+
 # Example 2
-# A call to benchmark with two named expressions and three replication 
-# counts, output sorted by the replication counts and then by the elapsed time:
-means.rep = function(n, m) 
-   mean(replicate(n, rnorm(m)))
-means.pat = function(n, m) 
-   colMeans(array(rnorm(n*m), c(m, n)))
-benchmark(
-   rep=means.rep(100, 100), 
-   pat=means.pat(100, 100), 
-   replications=10^(1:3),
-   order=c('replications', 'elapsed'))
+# Benchmarking an expression multiple times with the same replication count,
+# output with selected columns only
+benchmark(replications=rep(100, 3),
+          random.array(100, 100),
+          random.array(100, 100),
+          columns=c('test', 'elapsed', 'replications'))
 
 # Example 3
-# A call to benchmark with duplicate expressions and replication counts, 
-# output with selected columns, additional column computed afterwards:
-means.pat = function(n, m) 
-   colMeans(array(rnorm(n*m), c(m, n)))
-within(
-   benchmark(
-      replications=rep(100, 3), 
-      means.pat(100, 100), 
-      means.pat(100, 100), 
-      columns=c('test', 'elapsed', 'replications')),
-   {average=elapsed/replications})
+# Benchmarking two named expressions with three different replication
+# counts, output sorted by test name and replication count,
+# with additional column added after the benchmark
+within(benchmark(rep=random.replicate(100, 100),
+                 arr=random.array(100, 100),
+                 replications=10^(1:3),
+                 columns=c('test', 'replications', 'elapsed'),
+                 order=c('test', 'replications')),
+       { average = elapsed/replications })
 
 # Example 4
-# A call to benchmark with a list of arbitrary predefined expressions.
-# Relative timings are based on the user.self timings:
-means.rep = function(n, m) 
-	mean(replicate(n, rnorm(m)))
-means.pat = function(n, m) 
-	colMeans(array(rnorm(n*m), c(m, n)))
-tests = list(
-   rep=expression(means.rep(100, 100)),
-   pat=expression(means.pat(100, 100)))
-do.call(benchmark, 
-   c(tests, list(
-      replications=100, 
-      columns=c('test', 'user.self', 'replications', 'relative'), 
-      order='elapsed',
-      relative='user.self')))
+# Benchmarking a list of arbitrary predefined expressions
+tests = list(rep=expression(random.replicate(100, 100)), 
+             arr=expression(random.array(100, 100)))
+do.call(benchmark,
+        c(tests, list(replications=100,
+                      columns=c('test', 'elapsed', 'replications'),
+                      order='elapsed')))
+
 }      

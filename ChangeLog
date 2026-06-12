@@ -4,8 +4,8 @@
 	* DESCRIPTION (Desciption): Whitespace edits
 	* DESCRIPTION (URL,BugReports): Updated, added
 
-	* man/benchmark-package.Rd: Simplified, removed redundant examples
-	also in \code{benchmark} page
+	* man/rbenchmark-package.Rd: Simplified, removed redundant examples
+	also in \code{benchmark} page, renamed from benchmark-package
 
 2012-08-30 Wacek Kusnierczyk<waku@idi.ntnu.no>
 

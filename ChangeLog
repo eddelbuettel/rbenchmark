@@ -1,3 +1,8 @@
+2026-06-12  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Authors@R): New (old, see below) maintainer
+	* DESCRIPTION (Desciption): Whitespace edits
+
 2012-08-30 Wacek Kusnierczyk<waku@idi.ntnu.no>
 
 	* Polished code and documentation, updated repository site to be in sync

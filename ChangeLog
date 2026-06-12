@@ -2,12 +2,16 @@
 
 	* DESCRIPTION (Authors@R): New (old, see below) maintainer
 	* DESCRIPTION (Desciption): Whitespace edits
+	* DESCRIPTION (URL,BugReports): Updated, added
+
+	* man/benchmark-package.Rd: Simplified, removed redundant examples
+	also in \code{benchmark} page
 
 2012-08-30 Wacek Kusnierczyk<waku@idi.ntnu.no>
 
 	* Polished code and documentation, updated repository site to be in sync
 	with the package documentation.
-	
+
 	* Updated examples for more clarity.
 
 2012-08-29 Wacek Kusnierczyk<waku@idi.ntnu.no>

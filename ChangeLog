@@ -1,6 +1,7 @@
 2026-06-13  Dirk Eddelbuettel  <edd@debian.org>
 
-	* demo/benchmark.R: Reindented, adjusted on example
+	* man/benchmark.Rd: Whitespace edits
+	* demo/benchmark.R: Reindented, adjusted one example
 
 2026-06-12  Dirk Eddelbuettel  <edd@debian.org>
 

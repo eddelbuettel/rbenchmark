@@ -1,3 +1,7 @@
+2026-06-13  Dirk Eddelbuettel  <edd@debian.org>
+
+	* demo/benchmark.R: Reindented, adjusted on example
+
 2026-06-12  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Authors@R): New (old, see below) maintainer

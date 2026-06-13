@@ -1,5 +1,6 @@
 2026-06-13  Dirk Eddelbuettel  <edd@debian.org>
 
+	* R/benchmark.R: Whitespace edits, use <-, saner '}' placement
 	* man/benchmark.Rd: Whitespace edits
 	* demo/benchmark.R: Reindented, adjusted one example
 

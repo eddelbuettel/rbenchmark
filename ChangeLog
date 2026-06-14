@@ -6,6 +6,8 @@
 	* man/rbenchmark-package.Rd: Remove rbenchmark alias
 	* .Rbuildignore: Added
 
+	* .github/workflows/r-ci.yaml: Added
+
 2026-06-13  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/benchmark.R: Whitespace edits, use <-, saner '}' placement

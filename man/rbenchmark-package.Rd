@@ -1,6 +1,5 @@
 \name{rbenchmark-package}
 \alias{rbenchmark-package}
-\alias{rbenchmark}
 \docType{package}
 \title{\packageTitle{rbenchmark}}
 \description{\packageDescription{rbenchmark}}

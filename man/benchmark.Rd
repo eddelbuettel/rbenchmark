@@ -99,8 +99,12 @@
   contain multiple benchmarks for the involved expression-replication combinations. Note that such
   multiple benchmarks for a particular expression-replication pair will, in general, have different
   timing results, since they will be evaluated independently (unless the expressions perform side
-  effects that can influence each other's performance). } \author{Wacek Kusnierczyk
-  <mailto:waku@idi.ntnu.no>} \note{ Not all expressions, if passed as unnamed arguments, will be
+  effects that can influence each other's performance).
+}
+
+\author{Wacek Kusnierczyk, Dirk Eddelbuettel, Berend Hasselman}
+
+\note{ Not all expressions, if passed as unnamed arguments, will be
   cast to character strings as you might expect:
 
   \preformatted{
@@ -116,8 +120,6 @@
     benchmark(1:10^5, repl=1000) 
     # there will be a benchmark named 'repl'
   }
-
-  %See <http://code.google.com/p/rbenchmark> for more details.
 
 }
 
